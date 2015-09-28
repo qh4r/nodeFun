@@ -3,9 +3,17 @@
  */
 
 var http = require("http");
+var url = require("url");
 
-http.createServer(function (request, response) {
-    response.writeHead(200, {"Content-Type": "text/plain"});
-    response.write("Hello World");
-    response.end();
-}).listen(8888);
+function start(route, handle) {
+
+    http.createServer(function (request, response) {
+        var path = url.parse(request.url).pathname;
+        route(handle, path);
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("Request for path -> "+path);
+        response.end();
+    }).listen(8888);
+}
+
+exports.start = start;
