@@ -7,6 +7,7 @@ var handle = {};
 
 handle['/'] = handlers.start;
 handle['/start'] = handlers.start;
-handle['/upload'] = handle.upload;
+handle['/upload'] = handlers.upload;
+handle['404'] = handlers.error404;
 
 server.start(router.route, handle);
