@@ -14,7 +14,8 @@
   "dependencies": {
     "express": "3.x",
     "method-override" : "*",
-    "body-parser" : "*"
+    "body-parser" : "*",
+    "jade" : "1.11.x"
   },
   "engines": {
     "node": "0.10.x",

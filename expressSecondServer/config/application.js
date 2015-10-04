@@ -28,6 +28,14 @@ global.App = {
     }
 };
 
+//Jade
+
+App.app.set('views', App.appPath('views'));
+App.app.set('view engine', 'jade');
+App.app.locals({pretty: true});
+
+
+//Middleware
 App.app.use(bodyParser());
 App.app.use(methodOverride('_method'));
 App.app.use(express.cookieParser());

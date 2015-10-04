@@ -1,0 +1,13 @@
+extends ../layouts/home
+
+block content
+    h1 Thou hast bravez
+    form(action='/adventure', method='POST')
+        button(type='submit') Again!
+    form(action='/adventure/42?_method=PUT', method='POST')
+        button(type='submit') Cheat!
+    p.prettyText.bolded#loot You have found some&nbsp
+      a(href='/loot/1') loot.
+    //KLASY I ID BEZ ELEMENTOW TWORZA DIVY
+    .classTest test_Class
+    #idTest test_Id
