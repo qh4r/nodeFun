@@ -3,13 +3,19 @@
 
 extends ../layouts/home
 
-mixin monsterRow(m)
-  tr(id='monster-#{m.id}')
-    td= m.name
-    td= m.strength
-
 block content
-    h1 Ogre-slaying knife
-    p It has +9 against ogres. It was id ##{vm.id}
+
+    +sayHi
+    -if(vm.error != null)
+      h1 Failed to connect to db
+    -else if(vm.item == null)
+      h1 No items found
+    -else
+      h1=vm.item.name
+      p=vm.item.description
+
     - console.log("call z postLoot.jade!")
-    a(href='/adventure') back
+    a(href='/loot') back
+
+    //- h1 Ogre-slaying knife
+      //- p It has +9 against ogres. It was id ##{vm.id}

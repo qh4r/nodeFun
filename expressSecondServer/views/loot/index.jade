@@ -1,0 +1,22 @@
+//
+   Created by qh4r on 04.10.15.
+extends ../layouts/home
+
+mixin indexRow(item)
+  tr
+    td
+      a(href='/loot/#{item.id}')=item.name
+    td=item.description
+
+block content
+   +sayHi
+
+   h1 Table of all loots
+
+   table
+      thead
+        th Name
+        th Description
+      tbody
+         -each item in vm.items
+           +indexRow(item)

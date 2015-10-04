@@ -21,6 +21,9 @@ global.App = {
     helpers: function (path) {
         return require(this.root + '/helpers/' + path);
     },
+    model: function (path) {
+        return require(this.root + '/models/' + path);
+    },
     env: env,
     start: function () {
         if (!this.started) {
@@ -38,6 +41,8 @@ App.app.set('view engine', 'jade');
 //App.app.locals({pretty: true});
 App.app.locals({globalFunctions: App.helpers('globalFunctions')})
 
+//mongo
+App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/node_development');
 
 //Middleware
 App.app.use(bodyParser());
