@@ -12,10 +12,11 @@
     }
   ],
   "dependencies": {
+    "body-parser": "*",
     "express": "3.x",
-    "method-override" : "*",
-    "body-parser" : "*",
-    "jade" : "1.11.x"
+    "jade": "1.11.x",
+    "method-override": "*",
+    "mongoose": "^4.1.9"
   },
   "engines": {
     "node": "0.10.x",

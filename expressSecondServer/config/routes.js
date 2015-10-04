@@ -8,4 +8,6 @@ module.exports = function (app, routeHandlers) {
     app.put('/adventure/:id', routeHandlers.adventureRoutes.updateAdventure);
 
     app.get('/loot/:id', routeHandlers.lootRoutes.showLoot);
+
+    app.get('/monsters/:count', routeHandlers.monstersRoutes.showMonsters)
 }

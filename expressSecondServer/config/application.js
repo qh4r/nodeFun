@@ -35,7 +35,7 @@ global.App = {
 
 App.app.set('views', App.appPath('views'));
 App.app.set('view engine', 'jade');
-App.app.locals({pretty: true});
+//App.app.locals({pretty: true});
 App.app.locals({globalFunctions: App.helpers('globalFunctions')})
 
 
@@ -50,7 +50,8 @@ App.app.use(App.app.router);
 App.routeHandlers = {
     homeRoutes: App.require('routes/homeRoutes'),
     adventureRoutes: App.require('routes/adventureRoutes'),
-    lootRoutes: App.require('routes/lootRoutes')
+    lootRoutes: App.require('routes/lootRoutes'),
+    monstersRoutes: App.require('routes/monstersRoutes')
 }
 console.log("aplikacja" + __dirname);
 App.require('config/routes')(App.app, App.routeHandlers);
