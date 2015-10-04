@@ -3,6 +3,24 @@
 
 extends ../layouts/home
 
+mixin monsterRow(m)
+  tr(id='monster-#{m.id}')
+    td= m.name
+    td= m.strength
+
 block content
     h1 Ogre-slaying knife
     p It has +9 against ogres. It was id ##{vm.id}
+    - console.log("call z postLoot.jade!")
+    - if(vm.monsters.length > 0)
+      h2 Monsters in the area:
+      table
+        thead
+          th Name
+          th Strength
+        tbody
+        -each monster in vm.monsters
+          +monsterRow(monster)
+    - else
+      h2 There are no monsteres in the area
+    a(href='/adventure') back

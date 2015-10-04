@@ -1,6 +1,7 @@
 extends ../layouts/home
 
 block content
+  +sayHi
   h1 Are ya bravez #{user.name} ?
   form(action='/adventure', method='POST')
     button(type='submit') Yes I am bravez

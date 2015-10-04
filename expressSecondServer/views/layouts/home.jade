@@ -1,6 +1,11 @@
 doctype html
+mixin sayHi
+    h1 Hi you User you!
 html
     head
         title Adventure
     body
+        //dodaje -- relative path do pliku
+        include navbar
+        //mozliwe append lub preppend zamiast block
         block content

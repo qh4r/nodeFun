@@ -15,15 +15,18 @@ global.App = {
     appPath: function (path) {
         return this.root + '/' + path;
     },
-    require: function(path){
+    require: function (path) {
         return require(this.appPath(path))
     },
+    helpers: function (path) {
+        return require(this.root + '/helpers/' + path);
+    },
     env: env,
-    start: function(){
-        if(!this.started){
+    start: function () {
+        if (!this.started) {
             this.started = true;
             this.app.listen(this.port);
-            console.log("start aplikacji"+ App.version + " na porice " + App.port + " w " + App.env);
+            console.log("start aplikacji" + App.version + " na porice " + App.port + " w " + App.env);
         }
     }
 };
@@ -33,6 +36,7 @@ global.App = {
 App.app.set('views', App.appPath('views'));
 App.app.set('view engine', 'jade');
 App.app.locals({pretty: true});
+App.app.locals({globalFunctions: App.helpers('globalFunctions')})
 
 
 //Middleware
@@ -44,9 +48,9 @@ App.app.use(express.static(App.appPath('public')));
 App.app.use(App.app.router);
 
 App.routeHandlers = {
-    homeRoutes : App.require('routes/homeRoutes'),
+    homeRoutes: App.require('routes/homeRoutes'),
     adventureRoutes: App.require('routes/adventureRoutes'),
     lootRoutes: App.require('routes/lootRoutes')
 }
-console.log("aplikacja" +__dirname);
+console.log("aplikacja" + __dirname);
 App.require('config/routes')(App.app, App.routeHandlers);
