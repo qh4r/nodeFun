@@ -29,4 +29,8 @@ module.exports = function (app, routeHandlers) {
 
     app.get('/monsters', routeHandlers.monstersRoutes.showMonsters)
 
+    app.get('/signUp', routeHandlers.usersRoutes.newUser);
+
+    app.post('/signUp', routeHandlers.usersRoutes.createUser);
+
 }

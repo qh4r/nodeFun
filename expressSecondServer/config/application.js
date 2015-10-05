@@ -56,7 +56,8 @@ App.routeHandlers = {
     homeRoutes: App.require('routes/homeRoutes'),
     adventureRoutes: App.require('routes/adventureRoutes'),
     lootRoutes: App.require('routes/lootRoutes'),
-    monstersRoutes: App.require('routes/monstersRoutes')
+    monstersRoutes: App.require('routes/monstersRoutes'),
+    usersRoutes: App.require('routes/usersRoutes')
 }
 console.log("aplikacja" + __dirname);
 App.require('config/routes')(App.app, App.routeHandlers);

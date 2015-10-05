@@ -10,7 +10,7 @@ mixin monstersRow(monster)
       a(href='/deleteMonster/#{monster.id}') Delete
 
 block content
-  -if(vm.error != null)
+  -if(vm.error !== null)
     h2=vm.error
   -else if(vm.monsters && vm.monsters.length > 0)
       h2 Monsters in the area:

@@ -1,0 +1,15 @@
+//
+   Created by qh4r on 06.10.15.
+extends ../layouts/home
+
+block content
+   h1 Welcome in user creation
+
+   form.form-horizontal(action='/signUp', method='POST')
+      .form-group
+         label.control-label.col-sm-2 Email
+         .col-sm-10
+            input(type='email', name='email')
+      .form-group
+         .col-sm-offset-2
+            button(type='submit') Create User
