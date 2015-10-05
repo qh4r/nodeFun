@@ -1,0 +1,19 @@
+//
+   Created by qh4r on 05.10.15.
+extends ../layouts/home
+
+block content
+  -if(vm.error != null)
+    h2=vm.error
+  form(action='#{vm.postAction}', method='POST')
+    -if(vm.monster)
+      input(type='hidden', name='id', value='#{vm.monster.id}')
+    p
+      label(for='mname') Name
+      input#mname(name='mname', type='text', value='#{vm.monster ? vm.monster.name : ""}')
+    p
+      label(for='mdescription') Description
+      textarea#mdescription(rows=3, cols=20, name='mdescription')=vm.monster ? vm.monster.description : ""
+    p
+      button(type='submit') Save Monster
+

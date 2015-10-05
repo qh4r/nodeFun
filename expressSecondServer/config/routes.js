@@ -11,5 +11,22 @@ module.exports = function (app, routeHandlers) {
 
     app.get('/loot/:id', routeHandlers.lootRoutes.showLoot);
 
-    app.get('/monsters/:count', routeHandlers.monstersRoutes.showMonsters)
+    app.get('/addMonster', routeHandlers.monstersRoutes.addMonster);
+
+    app.post('/saveMonster', routeHandlers.monstersRoutes.saveMonster);
+
+    app.post('/updateMonster', routeHandlers.monstersRoutes.updateMonster);
+
+    app.get('/addMonster/:error', routeHandlers.monstersRoutes.addMonster);
+
+    app.get('/showMonster/:id', routeHandlers.monstersRoutes.showMonster)
+
+    app.get('/showMonster', routeHandlers.monstersRoutes.showMonster)
+
+    app.get('/deleteMonster/:id', routeHandlers.monstersRoutes.deleteMonster)
+
+    app.get('/editMonster/:id', routeHandlers.monstersRoutes.editMonster)
+
+    app.get('/monsters', routeHandlers.monstersRoutes.showMonsters)
+
 }

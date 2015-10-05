@@ -1,0 +1,12 @@
+//
+   Created by qh4r on 05.10.15.
+extends ../layouts/home
+
+block content
+    -if(vm.error)
+      h2=vm.error
+    -else
+      h1=vm.monster.name
+      p=vm.monster.description
+
+    a(href='/monsters') Back
