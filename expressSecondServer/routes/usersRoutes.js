@@ -11,7 +11,7 @@ exports.createUser = function (req, res) {
     var newUser = new User({email: req.body.email});
     newUser.save(function (err) {
         if (err) {
-            res.status(422).send('Error' + err.message);
+            res.status(422).send('Error' + err);
         } else {
             res.status(200).send('User account created');
         }

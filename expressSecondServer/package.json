@@ -16,7 +16,8 @@
     "express": "3.x",
     "jade": "1.11.x",
     "method-override": "*",
-    "mongoose": "^4.1.9"
+    "mongoose": "^4.1.9",
+    "mongoose-validate": "0.0.5"
   },
   "engines": {
     "node": "0.10.x",
