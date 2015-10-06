@@ -45,7 +45,9 @@ App.app.locals({globalFunctions: App.helpers('globalFunctions')})
 App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/node_development');
 
 //Middleware
-App.app.use(bodyParser());
+App.app.use(bodyParser.urlencoded({
+    extended: true
+}));
 App.app.use(methodOverride('_method'));
 App.app.use(express.cookieParser());
 App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
