@@ -33,4 +33,8 @@ module.exports = function (app, routeHandlers) {
 
     app.post('/signUp', routeHandlers.usersRoutes.createUser);
 
+    app.get('/signIn', routeHandlers.usersRoutes.loginForm);
+
+    app.post('/signIn', routeHandlers.usersRoutes.signInAttempt);
+
 }

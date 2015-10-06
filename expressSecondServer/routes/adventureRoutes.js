@@ -1,7 +1,8 @@
 exports.getAdventure = function getAdventure(req, res) {
     var user = {
-        name: 'qh4r'
+        name: req.session.usermail || ''
     };
+    //sconsole.log('mail: ' + req.session.usermail);
     res.render('adventure/getAdventure', {user: user});
 };
 

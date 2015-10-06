@@ -1,11 +1,14 @@
 //
    Created by qh4r on 06.10.15.
+
 extends ../layouts/home
 
 block content
-   h1 Welcome in user creation
+   h1 Sign in here:
 
-   form.form-horizontal(action='/signUp', method='POST')
+   -if(vm.error)
+      h2=vm.error
+   form.form-horizontal(action='/signIn', method='POST')
       .form-group
          label.control-label.col-sm-2 Email
          .col-sm-10
@@ -16,4 +19,4 @@ block content
             input(type='password', name='password')
       .form-group
          .col-sm-offset-2
-            button(type='submit') Create User
+            button(type='submit') Login

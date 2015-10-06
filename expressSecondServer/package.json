@@ -12,8 +12,10 @@
     }
   ],
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "*",
     "express": "3.x",
+    "express-session": "^1.11.3",
     "jade": "1.11.x",
     "method-override": "*",
     "mongoose": "^4.1.9",

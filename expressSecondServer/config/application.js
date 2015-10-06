@@ -3,7 +3,8 @@ var env = process.env.NODE_ENV || 'development',
     path = require('path'),
     express = require('express'),
     bodyParser = require('body-parser'),
-    methodOverride = require('method-override');
+    methodOverride = require('method-override'),
+    session = require('express-session');
 
 console.log("loading , env: " + env + " mode");
 
@@ -39,18 +40,26 @@ global.App = {
 App.app.set('views', App.appPath('views'));
 App.app.set('view engine', 'jade');
 //App.app.locals({pretty: true});
-App.app.locals({globalFunctions: App.helpers('globalFunctions')})
+App.app.set('trust proxy', 1);
+App.app.locals({globalFunctions: App.helpers('globalFunctions')});
+
 
 //mongo
 App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/node_development');
 
 //Middleware
+App.app.use(session({
+    secret: 'dupa bladaa',
+    saveUninitialized: true,
+    resave: false,
+    cookie: {secure: false, maxAge: 12000}
+}));
 App.app.use(bodyParser.urlencoded({
     extended: true
 }));
 App.app.use(methodOverride('_method'));
-App.app.use(express.cookieParser());
-App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
+//App.app.use(express.cookieParser());
+//App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
 App.app.use(express.static(App.appPath('public')));
 App.app.use(App.app.router);
 
