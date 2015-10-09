@@ -25,6 +25,9 @@ global.App = {
     model: function (path) {
         return require(this.root + '/models/' + path);
     },
+    routes: function (path) {
+        return require(this.root + '/routes/' + path);
+    },
     env: env,
     start: function () {
         if (!this.started) {
