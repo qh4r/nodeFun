@@ -12,6 +12,7 @@
     }
   ],
   "dependencies": {
+    "async": "^1.4.2",
     "bcrypt": "^0.8.5",
     "body-parser": "*",
     "express": "3.x",

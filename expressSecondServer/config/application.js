@@ -45,7 +45,7 @@ App.app.locals({globalFunctions: App.helpers('globalFunctions')});
 
 
 //mongo
-App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/node_development');
+App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/node_' + App.env);
 
 //Middleware
 App.app.use(session({
