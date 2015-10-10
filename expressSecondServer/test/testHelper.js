@@ -8,7 +8,7 @@ var async = require('async'),
     mongoose = require('mongoose');
 global.assert = require('assert');
 
-
+//czysci baze za kazdym razem
 App.Test = {
     clearDb: function (done) {
         var models = ['user'];
@@ -22,7 +22,8 @@ App.Test = {
         })
     }
 }
-
+//before each to jeden z hookow mochy. Ten znajduje sie w kontekscie globalnym
+//poza jakimkolwiek blokiem describe wiec wykonywany jest zawsze
 beforeEach(function(done){
     App.Test.clearDb(done);
 })

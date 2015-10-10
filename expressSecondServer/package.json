@@ -19,12 +19,15 @@
     "express-session": "^1.11.3",
     "jade": "1.11.x",
     "method-override": "*",
-    "mocha": "^2.3.3",
     "mongoose": "^4.1.9",
     "mongoose-validate": "0.0.5"
   },
   "engines": {
     "node": "0.10.x",
     "npm": "1.2.x"
+  },
+  "devDependencies": {
+    "supertest": "^1.1.0",
+    "mocha": "^2.3.3"
   }
 }

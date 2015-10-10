@@ -57,9 +57,16 @@ App.app.use(session({
     resave: false,
     cookie: {secure: false, maxAge: 12000}
 }));
-App.app.use(bodyParser.urlencoded({
-    extended: true
-}));
+if (App.env === 'test') {
+    App.app.use(bodyParser.json());
+} else {
+    App.app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+}
+//dla testow mochy
+//App.app.use(bodyParser.json());
+
 App.app.use(methodOverride('_method'));
 //App.app.use(express.cookieParser());
 //App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
