@@ -38,6 +38,8 @@ global.App = {
     }
 };
 
+console.log(__dirname);
+console.log(App.root);
 //Jade
 
 App.app.set('views', App.appPath('views'));
@@ -61,11 +63,38 @@ if (App.env === 'test') {
     App.app.use(bodyParser.json());
 } else {
     App.app.use(bodyParser.urlencoded({
-        extended: true
+        extended: true,
     }));
 }
-//dla testow mochy
-//App.app.use(bodyParser.json());
+
+//less
+
+var lessMiddleware = require('less-middleware'),
+    lessMiddlewareOptions = {
+        dest: App.appPath('/public'),
+        relativeUrls: true,
+        force: App.env === 'development',
+        once: App.env !== 'development',
+        debug: App.env === 'development',
+        preprocess: {
+            path: function(pathname, req){
+                return pathname.replace('/stylesheets', '')
+            }
+        }
+    },
+    lessParserOptions = {
+        dumpLineNumbers: 'comments'
+    },
+    lessCompilerOptions = {
+        compress: App.env !== 'development'
+    };
+
+App.app.use(lessMiddleware(
+    App.appPath('/stylesheets'),
+    lessMiddlewareOptions,
+    lessParserOptions,
+    lessCompilerOptions
+));
 
 App.app.use(methodOverride('_method'));
 //App.app.use(express.cookieParser());

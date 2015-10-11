@@ -1,9 +1,12 @@
 doctype html
+
 mixin sayHi
-    h1 Hi you User you !
+    .system_message
+        h1 Hi you User you !
 html
     head
         title Adventure
+        link(type='text/css', rel='stylesheet', href='/stylesheets/dummy.css')
     body
         //dodaje -- relative path do pliku
         include navbar
