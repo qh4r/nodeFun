@@ -6,9 +6,13 @@ mixin sayHi
 html
     head
         title Adventure
-        link(type='text/css', rel='stylesheet', href='/stylesheets/dummy.css')
+        //link(type='text/css', rel='stylesheet', href='/stylesheets/dummy.css')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/app.css')
+        script(src='/js/jquery-1.11.3.min.js')
+        script(src='/js/bootstrap.min.js')
     body
         //dodaje -- relative path do pliku
         include navbar
         //mozliwe append lub preppend zamiast block
-        block content
+        .container
+          block content

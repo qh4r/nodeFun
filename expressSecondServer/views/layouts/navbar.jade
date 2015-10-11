@@ -1,17 +1,27 @@
 //
    Created by qh4r on 04.10.15.
+.nav.navbar.navbar-default(role='navigation')
+    .navbar-header
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='#main_site_nav')
+          span.sr-only Toggle Navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='/')
+         | Adventure
 
-li
-  a(href='/signUp') create User
-li
-  a(href='/signIn') SignIn
-hr
-li
-  a(href='/') home
-li
-  a(href='/adventure') adventure
-li
-  a(href='/loot') loot
-li
-  a(href='/monsters') monsters
+    .collapse.navbar-collapse#main_site_nav
+      ul.nav.navbar-nav
+        li
+          a(href='/signUp') create User
+        li
+          a(href='/signIn') SignIn
+        li
+          a(href='/') home
+        li
+          a(href='/adventure') adventure
+        li
+          a(href='/loot') loot
+        li
+          a(href='/monsters') monsters
 
