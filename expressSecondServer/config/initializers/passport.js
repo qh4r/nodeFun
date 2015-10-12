@@ -9,8 +9,8 @@ function init() {
         deserializeUser = App.command('deserializeUser')();
 
     passport.use(usernameAndPasswordStrategy);
-    passport.use(serializeUser);
-    passport.use(deserializeUser);
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
 
     App.app.use(passport.initialize());
     App.app.use(passport.session());

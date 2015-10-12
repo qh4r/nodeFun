@@ -58,14 +58,14 @@ App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/
 
 //Middleware
 
-App.app.use(express.cookieParser());
-App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
-//App.app.use(session({
-//    secret: 'dupa bladaa',
-//    saveUninitialized: true,
-//    resave: false,
-//    cookie: {secure: false, maxAge: 12000}
-//}));
+App.app.use(express.cookieParser('dupa bladaa'));
+//App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
+App.app.use(session({
+    secret: 'dupa bladaa',
+    saveUninitialized: true,
+    resave: true,
+    cookie: {secure: false, maxAge: 12000}
+}));
 App.app.use(flash());
 
 if (App.env === 'test') {

@@ -12,5 +12,11 @@ exports.home = function home(req, res) {
     //    '<div><a href="/adventure">Go to Adventure</a></div>' +
     //    '</body>' +
     //    '</html>');
+    if (req.user) {
+        console.log(req.user);
+    }
+    else {
+        console.log('no user');
+    }
     res.render("home/home")
 };

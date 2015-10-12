@@ -25,6 +25,14 @@ exports.loginForm = function (req, res) {
     res.render('users/signIn', {vm: {}});
 }
 
+exports.logout = function (req, res) {
+    //req.logOut();
+    req.session.destroy(function(err){
+        res.redirect('/signIn');
+    })
+
+}
+
 exports.signInAttempt = function (req, res) {
     var email = req.body.email, password = req.body.password;
     if (!email || !password) return res.render('users/signIn',

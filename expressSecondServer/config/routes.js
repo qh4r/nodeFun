@@ -42,5 +42,7 @@ module.exports = function (app, routeHandlers) {
             successRedirect: "/", failureRedirect: "/signIn",
             failureFlash: "Invalid Username or Pass"
         }));
+    app.get('/signout', routeHandlers.usersRoutes.logout);
+
 
 }
