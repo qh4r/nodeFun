@@ -44,11 +44,14 @@ userSchema.pre('save', function (next) {
 
 userSchema.statics.matchUserAndPassword = function (email, password, cb) {
     var self = this;
-    self.findOne({email: email}, function (err, result) {
+    console.log('credentials: ', email, password);
+    userModel.findOne({email: email}, function (err, result) {
         var user = result;
+        console.log('user', err, user);
         if (err) return cb(err);
         if (!user) return cb(new Error('No such user'));
         bcrypt.compare(password, user.passwordHash, function (err, result) {
+            console.log('compare ok (cb u)', cb, user);
             return cb(err, result ? user : null);
         });
     });

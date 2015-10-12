@@ -4,7 +4,8 @@ var env = process.env.NODE_ENV || 'development',
     express = require('express'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    session = require('express-session');
+    session = require('express-session'),
+    flash = require('connect-flash');
 
 console.log("loading , env: " + env + " mode");
 
@@ -24,6 +25,9 @@ global.App = {
     },
     model: function (path) {
         return require(this.root + '/models/' + path);
+    },
+    command: function(path){
+        return require(this.root + '/commands/' + path);
     },
     routes: function (path) {
         return require(this.root + '/routes/' + path);
@@ -53,12 +57,17 @@ App.app.locals({globalFunctions: App.helpers('globalFunctions')});
 App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/node_' + App.env);
 
 //Middleware
-App.app.use(session({
-    secret: 'dupa bladaa',
-    saveUninitialized: true,
-    resave: false,
-    cookie: {secure: false, maxAge: 12000}
-}));
+
+App.app.use(express.cookieParser());
+App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
+//App.app.use(session({
+//    secret: 'dupa bladaa',
+//    saveUninitialized: true,
+//    resave: false,
+//    cookie: {secure: false, maxAge: 12000}
+//}));
+App.app.use(flash());
+
 if (App.env === 'test') {
     App.app.use(bodyParser.json());
 } else {
@@ -97,8 +106,7 @@ App.app.use(lessMiddleware(
 ));
 
 App.app.use(methodOverride('_method'));
-//App.app.use(express.cookieParser());
-//App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
+App.require('/config/initializers/passport.js')();
 App.app.use(express.static(App.appPath('public')));
 App.app.use(App.app.router);
 

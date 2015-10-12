@@ -1,3 +1,5 @@
+var passport = require('passport');
+
 module.exports = function (app, routeHandlers) {
     app.get("/", routeHandlers.homeRoutes.home);
 
@@ -35,6 +37,10 @@ module.exports = function (app, routeHandlers) {
 
     app.get('/signIn', routeHandlers.usersRoutes.loginForm);
 
-    app.post('/signIn', routeHandlers.usersRoutes.signInAttempt);
+    app.post('/signIn', passport.authenticate('local',
+        {
+            successRedirect: "/", failureRedirect: "/signIn",
+            failureFlash: "Invalid Username or Pass"
+        }));
 
 }
