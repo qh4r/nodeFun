@@ -40,6 +40,8 @@ module.exports = function (app, routeHandlers) {
     app.post('/signIn', passport.authenticate('local',
         {
             successRedirect: "/", failureRedirect: "/signIn",
+            successFlash: "Succesfuly logged in",
+            failureFlash: "Wrong username or password"
         }));
     app.get('/signout', routeHandlers.usersRoutes.logout);
 

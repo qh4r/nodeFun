@@ -18,5 +18,5 @@ exports.home = function home(req, res) {
     else {
         console.log('no user');
     }
-    res.render("home/home")
+    res.render("home/home", {flash: {notice: req.flash('success')}})
 };

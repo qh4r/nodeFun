@@ -22,7 +22,12 @@ exports.createUser = function (req, res) {
 }
 
 exports.loginForm = function (req, res) {
-    res.render('users/signIn', {vm: {}, flash: {notice: req.flash('notice')}});
+    res.render('users/signIn', {
+        vm: {}, flash: {
+            notice: req.flash('notice') || req.flash('success'),
+            error: req.flash('error')
+        }
+    });
 }
 
 exports.logout = function (req, res) {
