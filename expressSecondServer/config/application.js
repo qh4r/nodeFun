@@ -58,7 +58,7 @@ App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/
 
 //Middleware
 
-App.app.use(express.cookieParser('dupa bladaa'));
+//App.app.use(express.cookieParser('dupa bladaa'));
 //App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
 App.app.use(session({
     secret: 'dupa bladaa',
@@ -66,7 +66,7 @@ App.app.use(session({
     resave: true,
     cookie: {secure: false, maxAge: 12000}
 }));
-App.app.use(flash());
+//App.app.use(flash());
 
 if (App.env === 'test') {
     App.app.use(bodyParser.json());

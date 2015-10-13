@@ -26,10 +26,10 @@ exports.loginForm = function (req, res) {
 }
 
 exports.logout = function (req, res) {
-    //req.logOut();
-    req.session.destroy(function(err){
+    req.logOut();
+    //req.session.destroy(function(err){
         res.redirect('/signIn');
-    })
+    //})
 
 }
 
