@@ -66,7 +66,6 @@ App.app.use(session({
     resave: true,
     cookie: {secure: false, maxAge: 12000}
 }));
-//App.app.use(flash());
 
 if (App.env === 'test') {
     App.app.use(bodyParser.json());
@@ -107,6 +106,7 @@ App.app.use(lessMiddleware(
 
 App.app.use(methodOverride('_method'));
 App.require('/config/initializers/passport.js')();
+App.app.use(flash());
 App.app.use(express.static(App.appPath('public')));
 App.app.use(App.app.router);
 

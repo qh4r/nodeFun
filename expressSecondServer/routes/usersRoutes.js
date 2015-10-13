@@ -22,15 +22,13 @@ exports.createUser = function (req, res) {
 }
 
 exports.loginForm = function (req, res) {
-    res.render('users/signIn', {vm: {}});
+    res.render('users/signIn', {vm: {}, flash: {notice: req.flash('notice')}});
 }
 
 exports.logout = function (req, res) {
     req.logOut();
-    //req.session.destroy(function(err){
-        res.redirect('/signIn');
-    //})
-
+    req.flash('notice', 'User logged out');
+    res.redirect('/signIn');
 }
 
 exports.signInAttempt = function (req, res) {
