@@ -103,11 +103,11 @@ App.app.use(lessMiddleware(
     lessParserOptions,
     lessCompilerOptions
 ));
-
 App.app.use(methodOverride('_method'));
 App.require('/config/initializers/passport.js')();
 App.app.use(flash());
 App.app.use(express.static(App.appPath('public')));
+App.app.use(App.helpers('setFlash'));
 App.app.use(App.app.router);
 
 App.routeHandlers = {
