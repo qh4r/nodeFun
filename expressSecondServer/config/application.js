@@ -105,6 +105,7 @@ App.app.use(lessMiddleware(
 ));
 App.app.use(methodOverride('_method'));
 App.require('/config/initializers/passport.js')();
+App.app.use(App.helpers('checkAuthentication'));
 App.app.use(flash());
 App.app.use(express.static(App.appPath('public')));
 App.app.use(App.helpers('setFlash'));

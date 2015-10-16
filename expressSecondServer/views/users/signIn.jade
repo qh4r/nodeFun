@@ -6,7 +6,7 @@ extends ../layouts/home
 block content
    h1 Sign in here:
 
-   -if(vm.error)
+   -if(vm && vm.error)
       h2=vm.error
    form.form-horizontal(action='/signIn', method='POST')
       .form-group

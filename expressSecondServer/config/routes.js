@@ -3,6 +3,23 @@ var passport = require('passport');
 module.exports = function (app, routeHandlers) {
     app.get("/", routeHandlers.homeRoutes.home);
 
+    app.get('/signUp', routeHandlers.usersRoutes.newUser);
+
+    app.post('/signUp', routeHandlers.usersRoutes.createUser);
+
+    app.get('/signIn', routeHandlers.usersRoutes.loginForm);
+
+    app.post('/signIn', passport.authenticate('local',
+        {
+            successRedirect: "/", failureRedirect: "/signIn",
+            successFlash: "Succesfuly logged in",
+            failureFlash: "Wrong username or password"
+        }));
+    app.get('/signout', routeHandlers.usersRoutes.logout);
+
+    //najlepiej jednak zrobic podsekcje ktora bedzie chroniona
+    app.all(/^\/[^s][^i][^g][^n]/, App.helpers('ensureAuthentication'));
+
     app.get("/adventure", routeHandlers.adventureRoutes.getAdventure);
 
     app.post("/adventure", routeHandlers.adventureRoutes.postAdventure);
@@ -30,20 +47,5 @@ module.exports = function (app, routeHandlers) {
     app.get('/editMonster/:id', routeHandlers.monstersRoutes.editMonster)
 
     app.get('/monsters', routeHandlers.monstersRoutes.showMonsters)
-
-    app.get('/signUp', routeHandlers.usersRoutes.newUser);
-
-    app.post('/signUp', routeHandlers.usersRoutes.createUser);
-
-    app.get('/signIn', routeHandlers.usersRoutes.loginForm);
-
-    app.post('/signIn', passport.authenticate('local',
-        {
-            successRedirect: "/", failureRedirect: "/signIn",
-            successFlash: "Succesfuly logged in",
-            failureFlash: "Wrong username or password"
-        }));
-    app.get('/signout', routeHandlers.usersRoutes.logout);
-
 
 }

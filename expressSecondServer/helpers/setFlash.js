@@ -4,7 +4,7 @@
 
 function setFlash(req, res, next) {
     res.locals.flash = {
-        notice: req.flash('notice') || req.flash('success'),
+        notice: req.flash('notice') + req.flash('success'),
         error: req.flash('error')
     };
     next();

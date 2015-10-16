@@ -12,10 +12,11 @@
 
     .collapse.navbar-collapse#main_site_nav
       ul.nav.navbar-nav
-        li
-          a(href='/signUp') create User
-        li
-          a(href='/signIn') SignIn
+        -if(!userAuthenticated)
+          li
+              a(href='/signUp') create User
+            li
+              a(href='/signIn') SignIn
         li
           a(href='/') home
         li
@@ -24,5 +25,6 @@
           a(href='/loot') loot
         li
           a(href='/monsters') monsters
-        li.left
-            a(href='/signOut') SignOut
+        -if(!!userAuthenticated)
+            li.right
+                a(href='/signOut') SignOut
