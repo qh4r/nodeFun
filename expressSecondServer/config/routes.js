@@ -1,6 +1,6 @@
 var passport = require('passport');
 
-module.exports = function (app, routeHandlers) {
+module.exports = function (app, routeHandlers, auth) {
     app.get("/", routeHandlers.homeRoutes.home);
 
     app.get('/signUp', routeHandlers.usersRoutes.newUser);

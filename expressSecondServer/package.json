@@ -13,6 +13,7 @@
   ],
   "dependencies": {
     "async": "^1.4.2",
+    "authorized": "^1.0.0",
     "bcrypt": "^0.8.5",
     "body-parser": "*",
     "connect-flash": "^0.1.1",

@@ -42,6 +42,8 @@ global.App = {
     }
 };
 
+App.auth = require('../authorization/accessControl');
+
 console.log(__dirname);
 console.log(App.root);
 //Jade
@@ -110,6 +112,7 @@ App.app.use(flash());
 App.app.use(express.static(App.appPath('public')));
 App.app.use(App.helpers('setFlash'));
 App.app.use(App.app.router);
+App.app.use(require('../authorization/notAuthorized.js'));
 
 App.routeHandlers = {
     homeRoutes: App.require('routes/homeRoutes'),
@@ -119,4 +122,4 @@ App.routeHandlers = {
     usersRoutes: App.require('routes/usersRoutes')
 }
 console.log("aplikacja" + __dirname);
-App.require('config/routes')(App.app, App.routeHandlers);
+App.require('config/routes')(App.app, App.routeHandlers, App.auth);
