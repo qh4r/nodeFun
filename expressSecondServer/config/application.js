@@ -41,25 +41,25 @@ global.App = {
         }
     }
 };
+//
+//App.auth = require('../authorization/accessControl');
 
-App.auth = require('../authorization/accessControl');
-
-console.log(__dirname);
-console.log(App.root);
-//Jade
-
+//console.log(__dirname);
+//console.log(App.root);
+////Jade
+//
 App.app.set('views', App.appPath('views'));
 App.app.set('view engine', 'jade');
 //App.app.locals({pretty: true});
 App.app.set('trust proxy', 1);
-App.app.locals({globalFunctions: App.helpers('globalFunctions')});
-
-
-//mongo
+App.app.locals.globalFunctions = App.helpers('globalFunctions');
+//
+//
+////mongo
 App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/node_' + App.env);
-
-//Middleware
-
+//
+////Middleware
+//
 //App.app.use(express.cookieParser('dupa bladaa'));
 //App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
 App.app.use(session({
@@ -77,7 +77,7 @@ if (App.env === 'test') {
     }));
 }
 
-//less
+////less
 
 var lessMiddleware = require('less-middleware'),
     lessMiddlewareOptions = {
@@ -111,9 +111,9 @@ App.app.use(App.helpers('checkAuthentication'));
 App.app.use(flash());
 App.app.use(express.static(App.appPath('public')));
 App.app.use(App.helpers('setFlash'));
-App.app.use(App.app.router);
-App.app.use(require('../authorization/notAuthorized.js'));
-
+////App.app.use(App.app.router);
+//
+//App.app.use(require('../authorization/notAuthorized.js'));
 App.routeHandlers = {
     homeRoutes: App.require('routes/homeRoutes'),
     adventureRoutes: App.require('routes/adventureRoutes'),
@@ -122,4 +122,6 @@ App.routeHandlers = {
     usersRoutes: App.require('routes/usersRoutes')
 }
 console.log("aplikacja" + __dirname);
-App.require('config/routes')(App.app, App.routeHandlers, App.auth);
+//console.log(router);
+App.require('config/routes')(express, App.routeHandlers, App.auth);
+//App.require('config/routes')(App.app, App.routeHandlers, App.auth);

@@ -1,51 +1,55 @@
 var passport = require('passport');
 
-module.exports = function (app, routeHandlers, auth) {
-    app.get("/", routeHandlers.homeRoutes.home);
+module.exports = function (express, routeHandlers, auth) {
+    var router = express.Router();
 
-    app.get('/signUp', routeHandlers.usersRoutes.newUser);
 
-    app.post('/signUp', routeHandlers.usersRoutes.createUser);
+    router.get("/", routeHandlers.homeRoutes.home);
 
-    app.get('/signIn', routeHandlers.usersRoutes.loginForm);
+    router.route('/signUp')
+        .get(routeHandlers.usersRoutes.newUser)
+        .post(routeHandlers.usersRoutes.createUser);
 
-    app.post('/signIn', passport.authenticate('local',
+    router.route('/signIn')
+        .get(routeHandlers.usersRoutes.loginForm)
+        .post(passport.authenticate('local',
         {
             successRedirect: "/", failureRedirect: "/signIn",
             successFlash: "Succesfuly logged in",
             failureFlash: "Wrong username or password"
         }));
-    app.get('/signout', routeHandlers.usersRoutes.logout);
+    router.get('/signout', routeHandlers.usersRoutes.logout);
 
     //najlepiej jednak zrobic podsekcje ktora bedzie chroniona
-    app.all(/^\/[^s][^i][^g][^n]/, App.helpers('ensureAuthentication'));
+    router.all(/^\/[^s][^i][^g][^n]/, App.helpers('ensureAuthentication'));
 
-    app.get("/adventure", routeHandlers.adventureRoutes.getAdventure);
+    router.get("/adventure", routeHandlers.adventureRoutes.getAdventure);
 
-    app.post("/adventure", routeHandlers.adventureRoutes.postAdventure);
+    router.post("/adventure", routeHandlers.adventureRoutes.postAdventure);
 
-    app.put('/adventure/:id', routeHandlers.adventureRoutes.updateAdventure);
+    router.put('/adventure/:id', routeHandlers.adventureRoutes.updateAdventure);
 
-    app.get('/loot', routeHandlers.lootRoutes.index);
+    router.get('/loot', routeHandlers.lootRoutes.index);
 
-    app.get('/loot/:id', routeHandlers.lootRoutes.showLoot);
+    router.get('/loot/:id', routeHandlers.lootRoutes.showLoot);
 
-    app.get('/addMonster', routeHandlers.monstersRoutes.addMonster);
+    router.get('/addMonster', routeHandlers.monstersRoutes.addMonster);
 
-    app.post('/saveMonster', routeHandlers.monstersRoutes.saveMonster);
+    router.post('/saveMonster', routeHandlers.monstersRoutes.saveMonster);
 
-    app.post('/updateMonster', routeHandlers.monstersRoutes.updateMonster);
+    router.post('/updateMonster', routeHandlers.monstersRoutes.updateMonster);
 
-    app.get('/addMonster/:error', routeHandlers.monstersRoutes.addMonster);
+    router.get('/addMonster/:error', routeHandlers.monstersRoutes.addMonster);
 
-    app.get('/showMonster/:id', routeHandlers.monstersRoutes.showMonster)
+    router.get('/showMonster/:id', routeHandlers.monstersRoutes.showMonster)
 
-    app.get('/showMonster', routeHandlers.monstersRoutes.showMonster)
+    router.get('/showMonster', routeHandlers.monstersRoutes.showMonster)
 
-    app.get('/deleteMonster/:id', routeHandlers.monstersRoutes.deleteMonster)
+    router.get('/deleteMonster/:id', routeHandlers.monstersRoutes.deleteMonster)
 
-    app.get('/editMonster/:id', routeHandlers.monstersRoutes.editMonster)
+    router.get('/editMonster/:id', routeHandlers.monstersRoutes.editMonster)
 
-    app.get('/monsters', routeHandlers.monstersRoutes.showMonsters)
+    router.get('/monsters', routeHandlers.monstersRoutes.showMonsters)
 
+    App.app.use('/', router);
 }
