@@ -6,6 +6,7 @@ block content
   -if(vm.error !== null)
     h2=vm.error
   form(action='#{vm.postAction}', method='POST')
+    input(type='hidden', name="_csrf", value='#{csrfTokenFunction()}')
     -if(vm.monster)
       input(type='hidden', name='id', value='#{vm.monster.id}')
     p

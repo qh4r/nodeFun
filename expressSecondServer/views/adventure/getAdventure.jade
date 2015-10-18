@@ -4,5 +4,6 @@ block content
   +sayHi
   h1 Are ya bravez #{user.name} ?
   form(action='/adventure', method='POST')
+    input(type='hidden', name="_csrf", value='#{csrfTokenFunction()}')
     button(type='submit') Yes I am bravez
   a(href='/monsters') See monsters.

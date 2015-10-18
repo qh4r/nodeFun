@@ -4,6 +4,8 @@ module.exports = function (express, routeHandlers, auth) {
     var router = express.Router();
 
 
+    router.use(App.protection)
+    router.use(App.helpers('attachCsrfToken'));
     router.get("/", routeHandlers.homeRoutes.home);
 
     router.route('/signUp')
@@ -52,4 +54,7 @@ module.exports = function (express, routeHandlers, auth) {
     router.get('/monsters', routeHandlers.monstersRoutes.showMonsters)
 
     App.app.use('/', router);
+
+    router.use(App.helpers('invalidCsrfToken'));
+
 }

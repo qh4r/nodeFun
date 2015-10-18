@@ -9,6 +9,7 @@ block content
    -if(vm && vm.error)
       h2=vm.error
    form.form-horizontal(action='/signIn', method='POST')
+      input(type='hidden', name="_csrf", value='#{csrfTokenFunction()}')
       .form-group
          label.control-label.col-sm-2 Email
          .col-sm-10

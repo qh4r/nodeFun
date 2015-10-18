@@ -3,8 +3,10 @@ extends ../layouts/home
 block content
     h1 Thou hast bravez
     form(action='/adventure', method='POST')
+        input(type='hidden', name="_csrf", value='#{csrfTokenFunction()}')
         button(type='submit') Again!
     form(action='/adventure/42?_method=PUT', method='POST')
+        input(type='hidden', name="_csrf", value='#{csrfTokenFunction()}')
         button(type='submit') Cheat!
     p.prettyText.bolded#loot You have found some&nbsp
       a(href='/loot/1') loot.

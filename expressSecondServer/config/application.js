@@ -5,7 +5,9 @@ var env = process.env.NODE_ENV || 'development',
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     session = require('express-session'),
-    flash = require('connect-flash');
+    flash = require('connect-flash'),
+    csurf = require('csurf');
+//require na folder wyszukuje i odpala plik index.js znajdujacy sie w nim!!
 
 console.log("loading , env: " + env + " mode");
 
@@ -60,14 +62,17 @@ App.require('config/database')(process.env.DATABASE_URL || 'mongodb://localhost/
 //
 ////Middleware
 //
-//App.app.use(express.cookieParser('dupa bladaa'));
-//App.app.use(express.cookieSession({secret: "it'sasecrettoeverybody", key: "session"}));
-App.app.use(session({
-    secret: 'dupa bladaa',
-    saveUninitialized: true,
-    resave: true,
-    cookie: {secure: false, maxAge: 12000}
-}));
+
+App.app.use(require('cookie-session')({secret: "dupa bladaa", key: "session"}));
+//App.app.use(session({
+//    secret: 'dupa bladaa',
+//    saveUninitialized: true,
+//    resave: true,
+//    cookie: {secure: false, maxAge: 12000}
+//}));
+App.app.use(require('cookie-parser')('dupa bladaa'));
+//App.app.use(csurf({cookie: true}));
+App.protection = csurf({cookie: true});
 
 if (App.env === 'test') {
     App.app.use(bodyParser.json());
@@ -112,6 +117,7 @@ App.app.use(flash());
 App.app.use(express.static(App.appPath('public')));
 App.app.use(App.helpers('setFlash'));
 ////App.app.use(App.app.router);
+
 //
 //App.app.use(require('../authorization/notAuthorized.js'));
 App.routeHandlers = {
