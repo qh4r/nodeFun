@@ -29,6 +29,7 @@ function all(promise1, promise2){
 }
 
 all(deferrer1.promise, deferrer2.promise).then(console.log);
+// .spread wypisuje pokolei osobno zamiast tablicy
 
 setTimeout(function(){
 	deferrer1.resolve("PROMISES");
