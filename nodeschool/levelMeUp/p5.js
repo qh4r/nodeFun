@@ -11,11 +11,12 @@ function processFile(err, result){
 	var batch = []
 	result.toString().split('\n').forEach(function(line){
 		var lineArray = line.split(',');
-		if(lineArray.length > 2){
+//DEL IGNORES VALUE ARG
+// 		if(lineArray.length > 2){
 			batch.push({type: lineArray[0], key: lineArray[1], value: lineArray[2]});
-		} else {
-			batch.push({type: lineArray[0], key: lineArray[1]});
-		}
+// 		} else {
+// 			batch.push({type: lineArray[0], key: lineArray[1]});
+// 		}
 	});
 	db.batch(batch)
 }	
